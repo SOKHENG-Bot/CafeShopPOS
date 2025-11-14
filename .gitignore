@@ -12,4 +12,5 @@ media/
 staticfiles/
 
 .vscode/
-.idea/
+.idea/BackendPOS/db.sqlite3
+*.sqlite3
