@@ -14,3 +14,5 @@ staticfiles/
 .vscode/
 .idea/BackendPOS/db.sqlite3
 *.sqlite3
+*.sqlite3
+BackendPOS/db.sqlite3
