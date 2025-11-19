@@ -1,80 +1,152 @@
-import axios from "axios";
-import { createContext, useEffect, useState } from "react";
+import axios from 'axios';
+import { createContext, useEffect, useState } from 'react';
 
-const baseURL = "http://localhost:8000";
+const baseURL = 'http://localhost:8000';
 const MenuContext = createContext(undefined);
 
 export const MenuProvider = ({ children }) => {
   const [menuItems, setMenuItems] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadMenuData = async () => {
       try {
-        const response = await axios.get(`${baseURL}/api/menu/menu-items/`);
-        const data = response.data;
+        const [menuResponse, categoriesResponse] = await Promise.all([
+          axios.get('http://localhost:8000/api/menu/menu-items/'),
+          axios.get('http://localhost:8000/api/menu/categories/')
+        ]);
 
-        if (data.items) {
-          setMenuItems(data.items);
-          localStorage.setItem("menuItems", JSON.stringify(data.items));
-        }
-        if (data.categories) {
-          setCategories(data.categories);
-          localStorage.setItem("categories", JSON.stringify(data.categories));
-        }
+        setMenuItems(menuResponse.data);
+        setCategories(categoriesResponse.data);
       } catch (error) {
-        console.error("Failed to fetch menu data:", error);
-        // Fallback to localStorage if API fails
-        const storedMenuItems = localStorage.getItem("menuItems");
-        const storedCategories = localStorage.getItem("categories");
-        if (storedMenuItems) setMenuItems(JSON.parse(storedMenuItems));
-        if (storedCategories) setCategories(JSON.parse(storedCategories));
+        console.error('Failed to fetch menu data:', error);
+      } finally {
+        setLoading(false);
       }
     };
+
     loadMenuData();
   }, []);
 
-  const createMenuItem = (item) => {
-    setMenuItems((prev) => [...prev, { ...item }]);
+  // CREATE Menu Item
+  const createMenuItem = async (itemData) => {
+    try {
+      const response = await axios.post(
+        `${baseURL}/api/menu/menu-items/`,
+        itemData, { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      const newItem = response.data;
+
+      setMenuItems((prev) => [...prev, newItem]);
+      return newItem;
+    } catch (error) {
+      console.error('Failed to create item:', error);
+      throw error;
+    }
   };
 
-  const updateMenuItem = (id, updateData) => {
-    setMenuItems((prev) =>
-      prev.map((item) => (item.id == id ? { ...item, ...updateData } : item))
-    );
+  // UPDATE Menu Item
+  const updateMenuItem = async (id, updateData) => {
+    try {
+      const response = await axios.patch(
+        `${baseURL}/api/menu/menu-items/${id}/`,
+        updateData, { headers: { "Content-Type": "multipart/form-data" } }
+      );
+      const updatedItem = response.data;
+
+      setMenuItems((prev) =>
+        prev.map((item) =>
+          (item.id == id ? { ...item, ...updatedItem } : item))
+      );
+      return updatedItem;
+    } catch (error) {
+      console.error('Failed to update item:', error);
+      alert('Failed to save changes');
+      throw error;
+    };
   };
 
-  const deleteMenuItem = (id) => {
-    setMenuItems((prev) => prev.filter((item) => item.id !== id));
+  // DELETE Menu Item
+  const deleteMenuItem = async (id) => {
+    try {
+      await axios.delete(`${baseURL}/api/menu/menu-items/${id}/`);
+      setMenuItems((prev) => prev.filter((item) => item.id !== id));
+    } catch (error) {
+      console.error('Failed to delete item:', error);
+      alert('Could not delete item');
+      throw error;
+    };
   };
 
-  const createCategory = (category) => {
-    setCategories((prev) => [...prev, { ...category }]);
+  // UPDATE Item Stock
+  const updateStock = async (menuItemId, quantity) => {
+    try {
+      setMenuItems((prev) =>
+        prev.map((item) =>
+          item.id === menuItemId ? { ...item, ...quantity } : item
+        )
+      );
+    } catch (error) {
+      console.error("Failed to update stock:", error);
+      throw error;
+    }
   };
 
-  const updateCategory = (id, updateData) => {
-    setCategories((prev) =>
-      prev.map((category) =>
-        category.id === id ? { ...category, ...updateData } : category
-      )
-    );
+  // CREATE category
+  const createCategory = async (categoryData) => {
+    try {
+      const response = await axios.post(
+        `${baseURL}/api/menu/categories/`,
+        categoryData
+      );
+      const newCategory = response.data;
+
+      setCategories((prev) => [...prev, { ...categoryData }]);
+      return newCategory;
+    } catch (error) {
+      console.error("Failed to create categories:", error);
+      throw error
+    };
   };
 
-  const deleteCategory = (id) => {
-    setCategories((prev) => prev.filter((category) => category.id !== id));
+  // UPDATE category
+  const updateCategory = async (id, updateData) => {
+    try {
+      const response = await axios.put(
+        `${baseURL}/api/menu/categories/${id}/`,
+        updateData
+      );
+      const updateCategory = response.data;
+
+      setCategories((prev) =>
+        prev.map(cate =>
+          (cate.id == id ? updateCategory : cate))
+      );
+      return updateCategory;
+    } catch (error) {
+      console.error("Failed to update categories:", error);
+      alert("Failed to save changes.")
+      throw error;
+    }
   };
 
-  const updateStock = (menuItemId, quantity) => {
-    setMenuItems((prev) =>
-      prev.map((item) =>
-        item.id === menuItemId ? { ...item, ...quantity } : item
-      )
-    );
+  // DELETE category
+  const deleteCategory = async (id) => {
+    try {
+      await axios.delete(`${baseURL}/api/menu/categories/${id}/`)
+      setCategories((prev) => prev.filter((cate) => cate.id !== id));
+    } catch (error) {
+      console.error("Failed to delete categories:", error);
+      alert("Cannot delete categories.")
+      throw error;
+    }
   };
 
   const values = {
     menuItems,
     categories,
+    loading,
     createMenuItem,
     updateMenuItem,
     deleteMenuItem,
@@ -84,11 +156,7 @@ export const MenuProvider = ({ children }) => {
     updateStock,
   };
 
-  return (
-    <MenuContext.Provider value={values}>
-      {children}
-    </MenuContext.Provider>
-  )
+  return <MenuContext.Provider value={values}>{children}</MenuContext.Provider>;
 };
 
 export { MenuContext };

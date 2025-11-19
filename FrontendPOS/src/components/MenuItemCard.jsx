@@ -1,6 +1,6 @@
-import { Add } from '@mui/icons-material'
-import { Card, Box, IconButton, Typography } from '@mui/material'
-import { useCartContext } from '../hooks/useCard'
+import { Add } from '@mui/icons-material';
+import { Card, Box, IconButton, Typography } from '@mui/material';
+import { useCartContext } from '../hooks/useCard';
 import { toast } from 'sonner';
 
 const MenuItemCard = ({ item }) => {
@@ -9,8 +9,11 @@ const MenuItemCard = ({ item }) => {
   const handleAddToCart = () => {
     if (item.stock <= 0) return;
     addToCart(item);
-    toast.success(`${item.name} added to cart!`)
-  }
+    toast.success(`${item.name} added to cart!`);
+  };
+
+  const imageUrl = item.image || null;
+  const handleImageError = (event) => { event.currentTarget.style.display = "none" };
 
   return (
     <Card
@@ -35,17 +38,17 @@ const MenuItemCard = ({ item }) => {
           position: 'relative',
         }}
       >
-        {item.image ? (
+        {imageUrl ? (
           <Box
             component="img"
-            src="https://imgs.search.brave.com/t_Dp4WKDP93H2k4AS8ky-i_IdsyKWaUTFwI3CXfW93I/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTA3/MzM3Nzc1NC9waG90/by9mcmVzaC10YXN0/eS1idXJnZXIuanBn/P3M9NjEyeDYxMiZ3/PTAmaz0yMCZjPWFF/ZGtmQUVkVDh6U3ZM/OUotLTlseGF4MElP/eG5DUlphTTV0Q1E4/N3VWbUE9"
-            //src={item.image}
+            src={imageUrl}
             alt={item.name}
+            onError={handleImageError}
             sx={{
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              aspectRatio: "16/10",
+              aspectRatio: '16/10',
               filter: item.stock === 0 ? 'grayscale(100%)' : 'none',
             }}
           />
@@ -148,21 +151,25 @@ const MenuItemCard = ({ item }) => {
                 bgcolor: item.stock === 0 ? 'primary.main' : '#ff6374',
                 width: 45,
                 height: 45,
-                borderRadius: "0.85rem",
+                borderRadius: '0.85rem',
                 '&:hover': {
                   bgcolor: item.stock === 0 ? '#ff6374' : '#e55a6b',
                 },
                 boxShadow: 3,
               }}
             >
-              <Add sx={{ fontWeight: "bold", color: item.stock === 0 ? "textPrimary" : "#ffffff" }} />
+              <Add
+                sx={{
+                  fontWeight: 'bold',
+                  color: item.stock === 0 ? 'textPrimary' : '#ffffff',
+                }}
+              />
             </IconButton>
-
           </Box>
         </Box>
       </Box>
-    </Card >
-  )
-}
+    </Card>
+  );
+};
 
-export default MenuItemCard
+export default MenuItemCard;

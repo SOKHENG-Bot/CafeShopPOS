@@ -6,29 +6,14 @@ from . import views
 app_name = "menu"
 
 router = DefaultRouter()
-router.register(r"menu-items", views.MenuItemViewSet)
-
+router.register(r"menu-items", views.MenuItemViewSet, basename="menuitem")
+router.register(r"categories", views.CategoryViewSet, basename="category")
 
 urlpatterns = [
     path(
-        "menu-items/",
+        "data",
         views.MenuDataView.as_view(),
-        name="menu-data",
-    ),
-    path(
-        "menu-items/available/",
-        views.AvailableMenuItemView.as_view(),
-        name="available-menu-items",
-    ),
-    path(
-        "categories/",
-        views.CategoryListCreateView.as_view(),
-        name="category-list-create",
-    ),
-    path(
-        "categories/<int:pk>/",
-        views.CategoryDetailView.as_view(),
-        name="category-detail",
+        name="all-data",
     ),
 ]
 

@@ -1,0 +1,2 @@
+[tool.ruff.lint]
+ignore = ["E501"]  # Line too long

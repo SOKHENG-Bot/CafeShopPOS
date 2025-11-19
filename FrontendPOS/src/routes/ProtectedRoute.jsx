@@ -1,5 +1,5 @@
-import { Navigate } from "react-router-dom";
-import useUserActions from "../hooks/user.actions";
+import { Navigate } from 'react-router-dom';
+import useUserActions from '../hooks/user.actions';
 
 const ProtectedRoute = ({ children }) => {
   const { getAccessToken } = useUserActions();

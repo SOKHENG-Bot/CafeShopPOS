@@ -1,40 +1,41 @@
-import { Box } from "@mui/material";
-import { Outlet } from "react-router-dom";
-import LeftSideBar from "../components/LeftSideBar";
+import { Box } from '@mui/material';
+import { Outlet } from 'react-router-dom';
+import LeftSideBar from '../components/LeftSideBar';
 
 const LeftSideLayout = () => {
   return (
-    < Box
+    <Box
       sx={{
-        height: "100vh",
-        bgcolor: "background.default",
-        display: "flex",
+        height: '100vh',
+        bgcolor: 'background.default',
+        display: 'flex',
         p: 0,
-      }}>
-
-      < Box
+      }}
+    >
+      <Box
         sx={{
-          width: "8rem",
-          bgcolor: "background.paper",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}>
+          width: '8rem',
+          bgcolor: 'background.paper',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <LeftSideBar />
-      </Box >
+      </Box>
 
-      < Box
+      <Box
         sx={{
           flex: 1,
           boxShadow: 3,
-          bgcolor: "grey.100",
+          bgcolor: 'grey.100',
           overflow: 'auto',
-        }}>
+        }}
+      >
         <Outlet />
-      </Box >
-
-    </Box >
+      </Box>
+    </Box>
   );
 };
 

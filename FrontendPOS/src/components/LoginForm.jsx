@@ -1,11 +1,11 @@
-import { Alert, Box, Button, Container, TextField } from "@mui/material";
-import { useState } from "react";
-import useUserActions from "../hooks/user.actions";
+import { Alert, Box, Button, Container, TextField } from '@mui/material';
+import { useState } from 'react';
+import useUserActions from '../hooks/user.actions';
 
 const LoginForm = () => {
   const [form, setForm] = useState({
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   });
 
   const [error, setError] = useState(null);
@@ -22,7 +22,7 @@ const LoginForm = () => {
       if (err.response) {
         setError(err.response.data.detail);
       } else {
-        setError("Network error");
+        setError('Network error');
       }
     });
   };

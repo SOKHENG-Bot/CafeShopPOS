@@ -1,13 +1,13 @@
-import { Box, Link as MuiLink, Typography } from "@mui/material";
-import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Box, Link as MuiLink, Typography } from '@mui/material';
+import { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const NotFoundPage = () => {
   const location = useLocation();
 
   useEffect(() => {
     console.error(
-      "404 Error: User attempted to access non-existent route:",
+      '404 Error: User attempted to access non-existent route:',
       location.pathname
     );
   }, [location.pathname]);
@@ -15,11 +15,11 @@ const NotFoundPage = () => {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        bgcolor: "background.default",
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        bgcolor: 'background.default',
       }}
     >
       <Box textAlign="center">
