@@ -2,7 +2,7 @@
   "version": 2,
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/((?!assets|favicon.ico).*)",
       "dest": "/index.html"
     }
   ]
