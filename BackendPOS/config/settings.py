@@ -194,9 +194,11 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET', '').strip('"'),
 }
 
+print(f"DEBUG: Cloudinary config - CLOUD_NAME: {CLOUDINARY_STORAGE['CLOUD_NAME'][:5]}..., API_KEY: {CLOUDINARY_STORAGE['API_KEY'][:5]}...")
 cloudinary.config(**CLOUDINARY_STORAGE)
 
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+print(f"DEBUG: DEFAULT_FILE_STORAGE set to: {DEFAULT_FILE_STORAGE}")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
