@@ -189,9 +189,9 @@ MEDIA_URL = "/media/"
 
 # Cloudinary settings for media files
 CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME", "").strip('"'),
-    "API_KEY": os.environ.get("CLOUDINARY_API_KEY", "").strip('"'),
-    "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET", "").strip('"'),
+    "CLOUD_NAME": "dd8yjtqzyos",
+    "API_KEY": "481858889112774",
+    "API_SECRET": "YKMgiPjpDKCzqXVHFkYrOSRNkUY",
 }
 
 cloudinary.config(**CLOUDINARY_STORAGE)
