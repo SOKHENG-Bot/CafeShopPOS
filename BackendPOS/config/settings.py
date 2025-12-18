@@ -32,7 +32,7 @@ SECRET_KEY = "django-insecure-r6!)vb&xlbd81s@yhthqgw)#rjz3b@(xrjr4=7iziq*%d=g@!2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "cafeshoppos-production.up.railway.app").split(",")
 
 # HTTPS Settings
 SECURE_SSL_REDIRECT = False
