@@ -189,7 +189,7 @@ MEDIA_URL = "/media/"
 
 # Cloudinary settings for media files
 CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": "dd8yjtqzyos",
+    "CLOUD_NAME": "dd8yjtqzy",
     "API_KEY": "481858889112774",
     "API_SECRET": "YKMgiPjpDKCzqXVHFkYrOSRNkUY",
 }
