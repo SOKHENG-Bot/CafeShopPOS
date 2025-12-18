@@ -7,7 +7,7 @@ import { LoginCredentials, LoginResponse, User } from '../types';
 export const authApi = {
   login: async (credential: LoginCredentials): Promise<LoginResponse> => {
     const { data } = await apiClient.post<LoginResponse>(
-      '/api/auth/login/',
+      '/auth/login/',
       credential
     );
     return data;
@@ -20,19 +20,19 @@ export const authApi = {
       throw new Error('No refresh token found');
     }
 
-    await apiClient.post('/api/auth/logout/', {
+    await apiClient.post('/auth/logout/', {
       refresh: refreshToken,
     });
   },
 
   getCurrentUser: async (): Promise<User> => {
-    const { data } = await apiClient.get<User>('/api/auth/me/');
+    const { data } = await apiClient.get<User>('/auth/me/');
     return data;
   },
 
   refreshToken: async (refresh: string): Promise<{ access: string }> => {
     const { data } = await apiClient.post<{ access: string }>(
-      '/api/auth/token/refresh/',
+      '/auth/token/refresh/',
       { refresh }
     );
     return data;
