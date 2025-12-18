@@ -33,13 +33,13 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path("api/admin/", admin.site.urls),
-    path("api/auth/", include("apps.auths.urls")),
-    path("api/menus/", include("apps.menu.urls")),
-    path("api/inventory/", include("apps.inventory.urls")),
-    path("api/orders/", include("apps.order.urls")),
-    path("swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
-    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
+    path("/admin/", admin.site.urls),
+    path("/auth/", include("apps.auths.urls")),
+    path("/menus/", include("apps.menu.urls")),
+    path("/inventory/", include("apps.inventory.urls")),
+    path("/orders/", include("apps.order.urls")),
+    path("/swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
+    path("/redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
 ]
 
 if settings.DEBUG:
