@@ -55,7 +55,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 # CORS Origin
-CORS_ALLOWED_ORIGINS = ["https://cafe-shop-pos-dmop.vercel.app/"]
+CORS_ALLOWED_ORIGINS = ["https://cafe-shop-pos-dmop.vercel.app"]
 
 # Allow these HTTP headers
 CORS_ALLOW_HEADERS = [
