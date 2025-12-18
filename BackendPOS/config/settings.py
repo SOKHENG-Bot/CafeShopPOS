@@ -191,7 +191,9 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET', '').strip('"'),
 }
 
+print(f"DEBUG: Cloudinary config - Cloud: {CLOUDINARY_STORAGE['CLOUD_NAME'][:5]}..., Key: {CLOUDINARY_STORAGE['API_KEY'][:5]}..., Secret: {CLOUDINARY_STORAGE['API_SECRET'][:5]}...")
 cloudinary.config(**CLOUDINARY_STORAGE)
+print("DEBUG: Cloudinary configured successfully")
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
