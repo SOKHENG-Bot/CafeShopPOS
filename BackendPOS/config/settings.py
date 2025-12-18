@@ -185,7 +185,7 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-MEDIA_URL = "/media"
+MEDIA_URL = "/media/"
 
 # Cloudinary settings for media files
 CLOUDINARY_STORAGE = {
