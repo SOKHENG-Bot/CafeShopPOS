@@ -22,6 +22,17 @@ class MenuItemSerializer(serializers.ModelSerializer):
     # Category details for read operations (displays full category info)
     category_detail = CategorySerializer(source="category", read_only=True)
 
+    # Full image URL
+    image_url = serializers.SerializerMethodField()
+
+    def get_image_url(self, obj):
+        if obj.image:
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.image.url)
+            return obj.image.url
+        return None
+
     class Meta:
         model = Item
         fields = [
@@ -31,6 +42,7 @@ class MenuItemSerializer(serializers.ModelSerializer):
             "description",
             "price",
             "image",
+            "image_url",
             "category",
             "category_detail",
             "stock",
