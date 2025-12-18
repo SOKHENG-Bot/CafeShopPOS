@@ -18,7 +18,7 @@ packaging==25.0
 pillow==11.0.0
 pluggy==1.6.0
 PyJWT==2.10.1
-psycopg2-binary==2.9.9
+psycopg2-binary==2.9.10
 pytest==8.3.4
 pytest-cov==7.0.0
 pytest-django==4.9.0
@@ -34,5 +34,5 @@ uritemplate==4.2.0
 python-decouple==3.8
 gunicorn==20.1.0
 whitenoise==6.5.0
-cloudinary
-django-cloudinary-storage
+cloudinary==1.40.0
+django-cloudinary-storage==0.3.3
