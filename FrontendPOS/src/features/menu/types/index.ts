@@ -8,6 +8,7 @@ export interface MenuItem {
   category: string;
   available: boolean;
   image: string;
+  image_url: string;
   stock: number;
   lowStockThreshold?: number;
 }
