@@ -27,10 +27,15 @@ class MenuItemSerializer(serializers.ModelSerializer):
 
     def get_image_url(self, obj):
         if obj.image:
-            request = self.context.get('request')
-            if request:
-                return request.build_absolute_uri(obj.image.url)
-            return obj.image.url
+            # For Cloudinary URLs, return the URL directly (already absolute)
+            # For local files, build absolute URI
+            if hasattr(obj.image, 'url') and obj.image.url.startswith('http'):
+                return obj.image.url
+            else:
+                request = self.context.get('request')
+                if request:
+                    return request.build_absolute_uri(obj.image.url)
+                return obj.image.url
         return None
 
     class Meta:
