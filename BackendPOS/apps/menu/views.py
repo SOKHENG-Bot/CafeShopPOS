@@ -31,6 +31,7 @@ class ItemsViewSet(viewsets.ModelViewSet):
         if response.status_code == 201:
             item_data = response.data
             logger.info(f"Created item with image_url: {item_data.get('image_url')}")
+            logger.info(f"Raw image field: {item_data.get('image')}")
             logger.info(f"Full response data: {item_data}")
 
         return response

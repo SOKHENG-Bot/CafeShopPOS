@@ -2,6 +2,7 @@ from core.utils import get_upload_path
 from django.db import models
 from django.core.validators import MinValueValidator
 from django.core.exceptions import ValidationError
+from cloudinary_storage.storage import MediaCloudinaryStorage
 
 
 def menu_image_upload_path(instance, filename):
@@ -39,7 +40,7 @@ class Item(models.Model):
     slug = models.SlugField(max_length=20, unique=True, blank=True, null=True)
     description = models.TextField(blank=True, max_length=30)
     price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.01)])
-    image = models.ImageField(upload_to=menu_image_upload_path, null=True, blank=True)
+    image = models.ImageField(upload_to=menu_image_upload_path, storage=MediaCloudinaryStorage(), null=True, blank=True)
     category = models.ForeignKey("Category", on_delete=models.CASCADE, null=True, blank=True, related_name="items")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
