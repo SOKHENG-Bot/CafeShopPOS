@@ -46,15 +46,18 @@ CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
 
+# Essential for proxy setups like Railway
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+# Required for CSRF POSTs from HTTPS domains (Django 4+)
+CSRF_TRUSTED_ORIGINS = [
+    "https://cafeshoppos-production.up.railway.app",
+]
+
 # CORS Origin
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
-
-# Allow these HTTP methods
-# CORS_ALLOW_CREDENTIALS = True  # Allow cookies/auth headers
-# CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ALLOW_METHODS = ["DELETE", "GET", "OPTIONS", "PATCH", "POST", "PUT"]
 
 # Allow these HTTP headers
 CORS_ALLOW_HEADERS = [
