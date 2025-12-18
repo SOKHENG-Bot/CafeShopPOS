@@ -3,12 +3,12 @@ import type { InventoryItem, CreateInventoryItem } from '../types';
 
 export const inventoryApi = {
   getInventoryItems: async (): Promise<InventoryItem[]> => {
-    const { data } = await apiClient.get(`/api/inventory/items/`);
+    const { data } = await apiClient.get(`/inventory/items/`);
     return data;
   },
 
   getInventoryItem: async (id: string): Promise<InventoryItem> => {
-    const { data } = await apiClient.get(`/api/inventory/items/${id}`);
+    const { data } = await apiClient.get(`/inventory/items/${id}`);
     return data;
   },
 
@@ -16,7 +16,7 @@ export const inventoryApi = {
     createData: CreateInventoryItem
   ): Promise<InventoryItem> => {
     const { data } = await apiClient.post<InventoryItem>(
-      `/api/inventory/items/`,
+      `/inventory/items/`,
       createData,
       {
         headers: {
@@ -32,7 +32,7 @@ export const inventoryApi = {
     updateData: CreateInventoryItem
   ): Promise<InventoryItem> => {
     const { data } = await apiClient.patch<InventoryItem>(
-      `/api/inventory/items/${id}/`,
+      `/inventory/items/${id}/`,
       updateData,
       {
         headers: {
@@ -44,6 +44,6 @@ export const inventoryApi = {
   },
 
   removeInventoryItem: async (id: string): Promise<void> => {
-    await apiClient.delete(`/api/inventory/items/${id}/`);
+    await apiClient.delete(`/inventory/items/${id}/`);
   },
 };

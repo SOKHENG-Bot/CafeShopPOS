@@ -6,7 +6,7 @@ import type { MenuCategory, MenuFilters, MenuItem } from '../types';
 export const menuApi = {
   /* Get all menu items with optional filters */
   getMenuItems: async (filters?: MenuFilters): Promise<MenuItem[]> => {
-    const { data } = await apiClient.get<MenuItem[]>('/api/menus/items/', {
+    const { data } = await apiClient.get<MenuItem[]>('/menus/items/', {
       params: filters,
     });
     return data;
@@ -14,44 +14,38 @@ export const menuApi = {
 
   /* Get a single menu item by ID */
   getMenuItem: async (id: string): Promise<MenuItem> => {
-    const { data } = await apiClient.get<MenuItem>(`/api/menus/items/${id}`);
+    const { data } = await apiClient.get<MenuItem>(`/menus/items/${id}`);
     return data;
   },
 
   /* Get all menu categories */
   getCategories: async (): Promise<MenuCategory[]> => {
-    const { data } = await apiClient.get<MenuCategory[]>(
-      '/api/menus/categories/'
-    );
+    const { data } = await apiClient.get<MenuCategory[]>('/menus/categories/');
     return data;
   },
 
   /* Get menu items by category ID */
   getItemsByCategory: async (categoryId: string): Promise<MenuItem[]> => {
     const { data } = await apiClient.get<MenuItem[]>(
-      `/api/menus/categories/${categoryId}/`
+      `/menus/categories/${categoryId}/`
     );
     return data;
   },
 
   /* create menu item function */
   createMenuItem: async (formData: FormData): Promise<MenuItem> => {
-    const { data } = await apiClient.post<MenuItem>(
-      `/api/menus/items/`,
-      formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-    );
+    const { data } = await apiClient.post<MenuItem>(`/menus/items/`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return data;
   },
 
   /* update menu item function */
   updateMenuItem: async (id: string, formData: FormData): Promise<MenuItem> => {
     const { data } = await apiClient.patch<MenuItem>(
-      `/api/menus/items/${id}/`,
+      `/menus/items/${id}/`,
       formData,
       {
         headers: {
@@ -70,7 +64,7 @@ export const menuApi = {
   /* create category function */
   createCategory: async (name: string): Promise<MenuCategory> => {
     const { data } = await apiClient.post<MenuCategory>(
-      `/api/menus/categories/`,
+      `/menus/categories/`,
       { name },
       {
         headers: {
@@ -84,7 +78,7 @@ export const menuApi = {
   /* update category function */
   updateCategory: async (id: string, name: string): Promise<MenuCategory> => {
     const { data } = await apiClient.patch<MenuCategory>(
-      `/api/menus/categories/${id}/`,
+      `/menus/categories/${id}/`,
       { name },
       {
         headers: {
@@ -97,6 +91,6 @@ export const menuApi = {
 
   /* cancel category function */
   deleteCategory: async (id: string): Promise<void> => {
-    await apiClient.delete(`/api/menus/categories/${id}/`);
+    await apiClient.delete(`/menus/categories/${id}/`);
   },
 };
