@@ -191,6 +191,11 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET', '').strip('"'),
 }
 
+# Debug: Check if env vars are being read
+print(f"DEBUG ENV: CLOUD_NAME='{os.environ.get('CLOUDINARY_CLOUD_NAME', 'NOT_SET')}'")
+print(f"DEBUG ENV: API_KEY='{os.environ.get('CLOUDINARY_API_KEY', 'NOT_SET')[:5] if os.environ.get('CLOUDINARY_API_KEY') else 'NOT_SET'}...'")
+print(f"DEBUG ENV: API_SECRET='{os.environ.get('CLOUDINARY_API_SECRET', 'NOT_SET')[:5] if os.environ.get('CLOUDINARY_API_SECRET') else 'NOT_SET'}...'")
+
 cloudinary.config(**CLOUDINARY_STORAGE)
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
