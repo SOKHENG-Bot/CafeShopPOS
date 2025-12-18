@@ -35,4 +35,4 @@ python-decouple==3.8
 gunicorn==20.1.0
 whitenoise==6.5.0
 cloudinary==1.40.0
-django-cloudinary-storage==0.3.3
+django-cloudinary-storage==0.3.0
