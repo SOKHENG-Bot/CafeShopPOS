@@ -47,10 +47,8 @@ CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_HTTPONLY = True
 CSRF_COOKIE_HTTPONLY = True
 
-# Essential for proxy setups like Railway
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-# Required for CSRF POSTs from HTTPS domains (Django 4+)
 CSRF_TRUSTED_ORIGINS = [
     "https://cafeshoppos-production.up.railway.app",
 ]
@@ -94,6 +92,9 @@ INSTALLED_APPS = [
     "apps.order",
     "apps.auths",
     "apps.menu",
+    # cloudinary
+    "cloudinary",
+    "cloudinary_storage",
 ]
 
 MIDDLEWARE = [
@@ -184,16 +185,18 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+MEDIA_URL = "/media"
+
 # Cloudinary settings for media files
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME', '').strip('"'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY', '').strip('"'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET', '').strip('"'),
+    "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME", "").strip('"'),
+    "API_KEY": os.environ.get("CLOUDINARY_API_KEY", "").strip('"'),
+    "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET", "").strip('"'),
 }
 
 cloudinary.config(**CLOUDINARY_STORAGE)
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
