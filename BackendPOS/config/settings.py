@@ -185,8 +185,6 @@ STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Cloudinary settings for media files
-import cloudinary
-
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME', '').strip('"'),
     'API_KEY': os.environ.get('CLOUDINARY_API_KEY', '').strip('"'),
@@ -196,14 +194,6 @@ CLOUDINARY_STORAGE = {
 cloudinary.config(**CLOUDINARY_STORAGE)
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-# Debug: Test Cloudinary connection
-try:
-    import cloudinary.uploader
-    test_upload = cloudinary.uploader.upload("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==", folder="test")
-    print(f"DEBUG: Cloudinary test upload successful - {test_upload['url']}")
-except Exception as e:
-    print(f"DEBUG: Cloudinary test upload failed - {str(e)}")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
