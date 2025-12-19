@@ -220,11 +220,11 @@ REST_FRAMEWORK = {
 }
 
 SIMPLIFIED_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),  # in minutes
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),  # in days
-    "ROTATE_REFRESH_TOKENS": True,  # Generate new refresh token on refresh
-    "BLACKLIST_AFTER_ROTATION": True,  # Invalidate old refresh token
-    "UPDATE_LAST_LOGIN": True,  # Update user's last_login field
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "UPDATE_LAST_LOGIN": True,
     "ALGORITHM": "HS256",
     "SIGNING_KEY": SECRET_KEY,
     "VERIFYING_KEY": None,
