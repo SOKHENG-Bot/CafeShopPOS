@@ -17,11 +17,13 @@ Frontend: React 19.1.1 + TypeScript + Vite + TanStack Router + Zustand
 Deployment: Railway (Backend) + Vercel (Frontend)
 
 ### Prerequisites
+
 - Python 3.12
 - Node.js 18
 - PostgreSQL database
 
 ### Backend Setup
+
 ```bash
 git clone https://github.com/SOKHENG-Bot/CafeShopPOS.git
 cd CafeShopPOS/BackendPOS
@@ -34,6 +36,7 @@ python manage.py runserver
 ```
 
 ### Frontend Setup
+
 ```bash
 cd ../FrontendPOS
 npm install
