@@ -16,8 +16,6 @@ Backend: Django 5.2.7 + Django REST Framework + PostgreSQL + Cloudinary
 Frontend: React 19.1.1 + TypeScript + Vite + TanStack Router + Zustand
 Deployment: Railway (Backend) + Vercel (Frontend)
 
-## Quick Start
-
 ### Prerequisites
 - Python 3.12
 - Node.js 18
@@ -28,7 +26,7 @@ Deployment: Railway (Backend) + Vercel (Frontend)
 git clone https://github.com/SOKHENG-Bot/CafeShopPOS.git
 cd CafeShopPOS/BackendPOS
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py createsuperuser
@@ -68,17 +66,3 @@ CafeShopPOS/
 - GET /api/orders/ - List orders
 - POST /api/orders/ - Create order
 - ...
-
-API Docs: Visit /api/docs/ when running locally
-
-## Deployment
-
-### Backend (Railway)
-1. Connect GitHub repository to Railway
-2. Set environment variables: CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, SECRET_KEY
-3. Auto-deploys on git push
-
-### Frontend (Vercel)
-1. Connect GitHub repository to Vercel
-2. Set VITE_API_URL to Railway backend URL
-3. Auto-deploys on git push
