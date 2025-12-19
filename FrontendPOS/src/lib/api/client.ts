@@ -1,6 +1,7 @@
 /** API Client Configuration (Axios) **/
 
 import axios from 'axios';
+import { router } from '@/App';
 
 /* Get API base URL from environment variable or use default */
 const API_BASE_URL = import.meta.env.VITE_API_URL;
@@ -59,7 +60,7 @@ apiClient.interceptors.response.use(
         // Refresh failed, clear tokens and redirect to login
         localStorage.removeItem('authToken');
         localStorage.removeItem('refreshToken');
-        window.location.href = '/login';
+        router.navigate({ to: '/login' });
         return Promise.reject(refreshError);
       }
     }
@@ -68,7 +69,7 @@ apiClient.interceptors.response.use(
     if (error.response?.status === 401) {
       localStorage.removeItem('authToken');
       localStorage.removeItem('refreshToken');
-      window.location.href = '/login';
+      router.navigate({ to: '/login' });
     }
 
     // Handle network errors

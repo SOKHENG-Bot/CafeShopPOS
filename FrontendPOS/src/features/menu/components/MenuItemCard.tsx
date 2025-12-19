@@ -26,7 +26,7 @@ export const MenuItemCard = ({ item, AddToCart }: MenuItemCardProps) => {
         <div className="w-full h-[65%] flex items-center justify-center p-4">
           {item.image ? (
             <img
-              src={item.image}
+              src={item.image_url}
               alt={item.name}
               className="bg-white w-full h-full object-cover object-center rounded-2xl"
             />
