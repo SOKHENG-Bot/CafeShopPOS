@@ -62,10 +62,10 @@ CafeShopPOS/
 
 ## API Endpoints
 
-- POST [Login endpoint](https://cafeshoppos-production.up.railway.app/auth/login/) - User login
-- GET [Menu items](https://cafeshoppos-production.up.railway.app/menu/items/) - List menu items
-- POST [Menu items](https://cafeshoppos-production.up.railway.app/menu/items/) - Create menu item
-- GET [Inventory](https://cafeshoppos-production.up.railway.app/inventory/) - List inventory
-- GET [Orders](https://cafeshoppos-production.up.railway.app/orders/) - List orders
-- POST [Orders](https://cafeshoppos-production.up.railway.app/orders/) - Create order
+- POST https://cafeshoppos-production.up.railway.app/auth/login/ - User login
+- GET https://cafeshoppos-production.up.railway.app/menu/items/ - List menu items
+- POST https://cafeshoppos-production.up.railway.app/menu/items/ - Create menu item
+- GET https://cafeshoppos-production.up.railway.app/inventory/ - List inventory
+- GET https://cafeshoppos-production.up.railway.app/orders/ - List orders
+- POST https://cafeshoppos-production.up.railway.app/orders/ - Create order
 - ...
