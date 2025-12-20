@@ -2,6 +2,10 @@
 
 A Point of Sale (POS) system for cafes and restaurants. It includes menu management, inventory tracking, and order processing with cloud-based image storage.
 
+## Demo Website
+
+**Website** https://cafe-shop-pos-mu.vercel.app/
+
 ## Features
 
 - Menu Management: Create categories and items with image uploads
