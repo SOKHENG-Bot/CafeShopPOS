@@ -5,6 +5,7 @@ A Point of Sale (POS) system for cafes and restaurants. It includes menu managem
 ## Demo Website
 
 **Website** https://cafe-shop-pos-mu.vercel.app/
+**Credential** username: admin, password: password
 
 ## Features
 
