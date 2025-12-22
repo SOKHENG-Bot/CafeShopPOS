@@ -58,7 +58,7 @@ export const menuApi = {
 
   /* cancel menu item function */
   deleteMenuItem: async (id: string): Promise<void> => {
-    await apiClient.delete(`/api/menus/items/${id}/`);
+    await apiClient.delete(`/menus/items/${id}/`);
   },
 
   /* create category function */
